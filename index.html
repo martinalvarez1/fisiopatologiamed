@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fisiopatología · Centro de Estudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=9">
+<script>try{if(localStorage.getItem('fp_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
+</head>
+<body data-theme="light">
+
+<div id="boot" aria-hidden="true">
+  <div class="boot-in">
+    <svg class="boot-ecg" viewBox="0 0 420 78" preserveAspectRatio="xMidYMid meet">
+      <defs><linearGradient id="bootgrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#6a51d8"/><stop offset=".5" stop-color="#c8294a"/><stop offset="1" stop-color="#0f8f83"/>
+      </linearGradient></defs>
+      <polyline points="0,39 122,39 134,31 146,39 192,39 200,45 208,11 216,53 224,39 260,39 276,27 292,39 420,39"/>
+    </svg>
+    <p class="boot-wm">Fisiopatología</p>
+  </div>
+</div>
+<div class="topbar">
+  <div class="topbar-in">
+    <button class="brand" onclick="goHome()" aria-label="Inicio">
+      <span class="wm"><b>Fisiopatología</b><small>Centro de estudio</small></span>
+    </button>
+    <div class="spacer"></div>
+    <button class="tb-btn" onclick="openSearch()" title="Buscar en todo el contenido (tecla /)">🔍 Buscar</button>
+    <button class="tb-btn" id="themeBtn" onclick="toggleTheme()">🌙 Tema</button>
+    <button class="tb-btn" onclick="exportProgress()" title="Descargar tu progreso como archivo">⬇ Exportar</button>
+    <button class="tb-btn" onclick="document.getElementById('importFile').click()" title="Cargar un progreso guardado">⬆ Importar</button>
+    <button class="tb-btn" onclick="resetProgress()" title="Borrar tu progreso guardado">↺ Progreso</button>
+    <input type="file" id="importFile" accept="application/json,.json" onchange="importProgress(this)" hidden>
+  </div>
+</div>
+
+<main id="app"></main>
+<div class="footer">
+  Recurso de estudio de Fisiopatología · Solemnes 1 a 3<br>
+  La sección Al día cita evidencia 2023–2026 y no reemplaza guías clínicas ni el criterio de tu docente<br>
+  Tu avance se guarda solo en este navegador
+</div>
+
+<div id="searchOverlay" class="search-ov" hidden>
+  <div class="search-box" role="dialog" aria-label="Buscar">
+    <div class="search-top">
+      <input id="searchInput" class="search-input" type="search" placeholder="Buscar en resúmenes, preguntas, casos, glosario…" autocomplete="off" oninput="runSearch()">
+      <button class="search-close" onclick="closeSearch()" aria-label="Cerrar">✕</button>
+    </div>
+    <div id="searchResults" class="search-results"></div>
+  </div>
+</div>
+
+<script src="data.js?v=9"></script>
+<script src="app.js?v=9"></script>
+</body>
+</html>
