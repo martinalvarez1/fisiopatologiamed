@@ -18,14 +18,22 @@ function solDone(sol){
 
 /* Tema oscuro persistente */
 try{if(localStorage.getItem('fp_theme')==='dark')document.body.setAttribute('data-theme','dark');}catch(e){}
-function toggleTheme(){
-  const d=document.body.getAttribute('data-theme')==='dark';
-  document.body.setAttribute('data-theme',d?'light':'dark');
-  document.documentElement.setAttribute('data-theme',d?'light':'dark');
-  try{localStorage.setItem('fp_theme',d?'light':'dark')}catch(e){}
-  document.getElementById('themeBtn').textContent=(d?'🌙':'☀️')+' Tema';
+/* El tema vive SOLO en <html>. Antes tambien se escribia en <body>, que ademas
+   traia data-theme="light" fijo en el HTML: al cargar en oscuro ambos quedaban
+   en desacuerdo y el primer toque no hacia nada visible. */
+function currentTheme(){return document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.body.removeAttribute('data-theme');
+  const b=document.getElementById('themeBtn');
+  if(b)b.innerHTML=(t==='dark'?'☀️':'🌙')+'<span class="tbl"> Tema</span>';
 }
-document.getElementById('themeBtn').textContent=(document.body.getAttribute('data-theme')==='dark'?'☀️':'🌙')+' Tema';
+function toggleTheme(){
+  const next=currentTheme()==='dark'?'light':'dark';
+  applyTheme(next);
+  try{localStorage.setItem('fp_theme',next)}catch(e){}
+}
+applyTheme(currentTheme());
 
 function resetProgress(){
   if(confirm('¿Borrar TODO tu progreso? Esto incluye preguntas respondidas, temas leidos, flashcards y cadenas.')){
@@ -568,8 +576,7 @@ function importProgress(input){
    if(d.read){READ=d.read;try{localStorage.setItem(READ_KEY,JSON.stringify(READ));}catch(e){}}
    if(d.srs){SRS=d.srs;saveSRS();}
    if(d.chains){CH=d.chains;saveCH();}
-   if(d.theme){localStorage.setItem('fp_theme',d.theme);document.body.setAttribute('data-theme',d.theme);document.documentElement.setAttribute('data-theme',d.theme);
-    var tb=document.getElementById('themeBtn');if(tb)tb.textContent=(d.theme==='dark'?'☀️':'🌙')+' Tema';}
+   if(d.theme){try{localStorage.setItem('fp_theme',d.theme);}catch(e){}applyTheme(d.theme==='dark'?'dark':'light');}
    alert('Progreso importado correctamente.');
    route();
   }catch(err){alert('No se pudo leer el archivo. ¿Es un export válido de esta app?');}
