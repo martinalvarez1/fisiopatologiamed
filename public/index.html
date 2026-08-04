@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=11">
+<link rel="stylesheet" href="styles.css?v=13">
 <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('fp_theme')==='dark'?'dark':'light');}catch(e){}</script>
 </head>
 <body>
@@ -31,9 +31,14 @@
     <div class="spacer"></div>
     <button class="tb-btn" onclick="openSearch()" title="Buscar en todo el contenido (tecla /)" aria-label="Buscar">🔍<span class="tbl"> Buscar</span></button>
     <button class="tb-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Cambiar tema">🌙<span class="tbl"> Tema</span></button>
-    <button class="tb-btn tb-opt" onclick="exportProgress()" title="Descargar tu progreso como archivo" aria-label="Exportar progreso">⬇<span class="tbl"> Exportar</span></button>
-    <button class="tb-btn tb-opt" onclick="document.getElementById('importFile').click()" title="Cargar un progreso guardado" aria-label="Importar progreso">⬆<span class="tbl"> Importar</span></button>
-    <button class="tb-btn tb-opt" onclick="resetProgress()" title="Borrar tu progreso guardado" aria-label="Reiniciar progreso">↺<span class="tbl"> Progreso</span></button>
+    <div class="tb-more">
+      <button class="tb-btn" onclick="toggleMore(event)" aria-label="Más opciones" aria-haspopup="true" aria-expanded="false" id="moreBtn">⋯</button>
+      <div class="tb-menu" id="tbMenu" hidden>
+        <button onclick="exportProgress();closeMore()">⬇ Exportar progreso</button>
+        <button onclick="document.getElementById('importFile').click();closeMore()">⬆ Importar progreso</button>
+        <button onclick="closeMore();resetProgress()">↺ Reiniciar progreso</button>
+      </div>
+    </div>
     <input type="file" id="importFile" accept="application/json,.json" onchange="importProgress(this)" hidden>
   </div>
 </div>
@@ -55,7 +60,7 @@
   </div>
 </div>
 
-<script src="data.js?v=11"></script>
-<script src="app.js?v=11"></script>
+<script src="data.js?v=13"></script>
+<script src="app.js?v=13"></script>
 </body>
 </html>

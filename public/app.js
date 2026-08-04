@@ -28,6 +28,26 @@ function applyTheme(t){
   const b=document.getElementById('themeBtn');
   if(b)b.innerHTML=(t==='dark'?'☀️':'🌙')+'<span class="tbl"> Tema</span>';
 }
+/* Menu de acciones secundarias: descongestiona la barra en pantallas chicas. */
+function toggleMore(e){
+  if(e&&e.stopPropagation)e.stopPropagation();
+  const m=document.getElementById('tbMenu'),b=document.getElementById('moreBtn');
+  if(!m)return;
+  const open=m.hidden;
+  m.hidden=!open;
+  if(b)b.setAttribute('aria-expanded',String(open));
+}
+function closeMore(){
+  const m=document.getElementById('tbMenu'),b=document.getElementById('moreBtn');
+  if(m)m.hidden=true;
+  if(b)b.setAttribute('aria-expanded','false');
+}
+document.addEventListener('click',function(e){
+  const m=document.getElementById('tbMenu');
+  if(m&&!m.hidden&&!m.contains(e.target)&&e.target.id!=='moreBtn')closeMore();
+});
+window.addEventListener('keydown',function(e){if(e.key==='Escape')closeMore();});
+
 function toggleTheme(){
   const next=currentTheme()==='dark'?'light':'dark';
   applyTheme(next);

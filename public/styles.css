@@ -90,29 +90,41 @@ a{color:inherit}
 .spacer{flex:1}
 .tb-btn{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:8px;padding:7px 12px;font-size:12.5px;font-weight:500;letter-spacing:-.01em;transition:color .15s,border-color .15s,transform .15s}
 .tb-btn:hover{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 28%,var(--line));transform:translateY(-1px)}
-/* touch-action:manipulation desactiva el doble-toque-para-zoom del navegador:
-   sin esto, tocar rapido dos veces un boton deszoomaba la pagina en el celular. */
-button,.tb-btn,.btn,.opt,.pbtn,.sbtn,.chpb,.se-item,.solrow,.hubcard,.tp{touch-action:manipulation}
+/* Doble-toque-para-zoom: el navegador movil lo dispara al tocar rapido dos veces
+   EN CUALQUIER PARTE, no solo en un boton. Aplicarlo a toda la pagina es lo que
+   corta el "se deszoomea y queda todo chico". El pellizco para hacer zoom SIGUE
+   funcionando: manipulation solo desactiva el doble-toque, no el pinch-zoom. */
+html{touch-action:manipulation}
+button{touch-action:manipulation}
+/* Evita que iOS reescale el texto al girar el telefono */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Red de seguridad: ninguna palabra o dato largo debe poder ensanchar la pagina.
+   Un solo desborde hace que el navegador movil encoja TODO para que quepa. */
+body{overflow-wrap:break-word}
 .topbar-in{flex-wrap:nowrap}
 .tb-btn{white-space:nowrap;flex:none}
+/* menu de acciones secundarias */
+.tb-more{position:relative;flex:none}
+.tb-menu{position:absolute;right:0;top:calc(100% + 7px);min-width:212px;background:var(--panel);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow-lift);padding:6px;z-index:60;animation:riseSm .16s ease both}
+.tb-menu[hidden]{display:none}
+.tb-menu button{display:block;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:11px 12px;font-family:var(--ui);font-size:14px;color:var(--ink);letter-spacing:-.01em}
+.tb-menu button:hover{background:var(--soft)}
+
 @media(max-width:760px){
-  /* solo iconos: los rotulos ocupaban mas ancho del disponible y desbordaban */
+  /* solo iconos: los rotulos ocupaban mas ancho del disponible */
   .tb-btn .tbl{display:none}
-  .tb-btn{padding:8px 10px;font-size:15px;line-height:1;min-height:38px}
-  .topbar-in{gap:7px;padding:9px 12px}
-  .brand .wm b{font-size:16px}
+  .tb-btn{padding:9px 12px;font-size:16px;line-height:1;min-height:40px}
+  .topbar-in{gap:8px;padding:9px 13px}
+  .brand .wm b{font-size:16.5px}
 }
 @media(max-width:560px){
   .brand .wm small{display:none}
   .brand .mark{width:30px;height:30px}
-  .tb-btn{padding:8px 9px;font-size:14px}
-  .topbar-in{gap:5px;padding:9px 10px}
 }
-@media(max-width:400px){
-  /* todo sigue accesible: se encoge, no se esconde */
-  .brand .wm b{font-size:14.5px}
-  .tb-btn{padding:7px 7px;font-size:13.5px}
-  .topbar-in{gap:4px;padding:8px 8px}
+@media(max-width:380px){
+  .brand .wm b{font-size:15px}
+  .tb-btn{padding:8px 10px}
+  .topbar-in{gap:6px;padding:8px 10px}
 }
 
 .wrap{max-width:1160px;margin:0 auto;padding:26px 22px 72px;animation:fadeIn .3s ease both}
@@ -414,8 +426,12 @@ td:first-child{font-weight:500}
 .mnem .word{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.032em}
 .mnem .expl{font-family:var(--prose);color:var(--muted);font-size:14.5px;letter-spacing:-.005em;margin-top:3px}
 .mnem ul{margin:16px 0 0;padding:0;list-style:none}
-.mnem li{padding:9px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:baseline;font-size:15px}
+.mnem li{padding:9px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:baseline;font-size:15px;flex-wrap:wrap}
 .mnem li b{font-size:13.5px;font-weight:600;flex:none;color:var(--c);min-width:88px}
+/* sin min-width:0 el item flex no puede encogerse por debajo de su contenido y
+   un texto largo sin espacios ("Diabetica/alcoholica/ayuno") desbordaba la pagina */
+.mnem li span{flex:1;min-width:0;overflow-wrap:anywhere}
+@media(max-width:420px){.mnem li{gap:8px}.mnem li b{min-width:70px}}
 
 /* ---------------- glossary ---------------- */
 .gsearch{width:100%;max-width:74ch;padding:14px 17px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font-family:var(--ui);font-size:15px;margin-bottom:18px;transition:border-color .16s,box-shadow .16s;animation:riseSm .45s .1s both}
