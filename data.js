@@ -15,6 +15,15 @@ s1:{
  topics:[
   {id:'estres',name:'Estrés celular y agentes injuriantes',
    notes:[
+    {h:'Marco: cómo se estudia la enfermedad',b:[
+      'La <b>Patología general</b> estudia los mecanismos básicos de daño celular y tisular; la <b>Patología de sistemas</b>, la respuesta específica de cada órgano.',
+      'Tres miradas complementarias: <b>Etiología</b> (la causa que determina la enfermedad), <b>Fisiopatología</b> (los mecanismos de producción a nivel molecular, celular, tisular y sistémico) y <b>Semiología</b> (las manifestaciones que alertan de su existencia).',
+      '<b>Homeostasis</b> = respuesta fisiológica, normal y armónica (lesión reversible). <b>Heterostasis</b> = respuesta patológica, anormal e inarmónica, con hipo o hiperreacción (lesión irreversible). La heterostasis <u>es</u> la enfermedad.']},
+    {h:'Estímulo o agente injuriante: depende',b:[
+      'Un <b>mismo factor, en diferentes circunstancias, puede inducir una respuesta fisiológica o patológica</b>: puede ser estímulo en un caso y agente injuriante (noxa) en otro. No hay agentes "malos" en abstracto.',
+      'Lo que decide son <b>tres características del factor</b>: <b>calidad</b> (qué tipo: radiación, fármaco, hipoxia, temperatura, virus…), <b>intensidad</b> (nivel o concentración) y <b>duración</b> (agudo: segundos a días; crónico: semanas a años).',
+      '<b>Factores condicionantes del individuo:</b> edad, sexo, raza, factores genéticos (ej. antígenos de histocompatibilidad) y estado nutricional.',
+      '<b>Factores condicionantes de la célula:</b> tipo celular (nerviosa, epitelial, renal…), edad, contenido de <u>ATP, glucógeno y antioxidantes</u>, fase del ciclo celular (G0, G1, S, G2, M) y su función o posición en el tejido.']},
     {h:'Concepto',b:['El <b>estrés celular</b> son cambios moleculares que experimentan las células frente a factores estresantes o agentes injuriantes. No todas las células son igual de sensibles: las <b>neuronas</b> son muy sensibles a la falta de nutrientes y O₂.',
       'Para corroborar estrés celular por hipoxia se mide la <span class="kbd">[ATP] intracelular</span>: baja porque la cadena transportadora de electrones (CTE) necesita O₂ para producir ATP.']},
     {h:'Tipos de estrés',b:[
@@ -41,6 +50,11 @@ s1:{
     {q:'La respuesta a proteínas mal plegadas (UPR) en el RE es fisiológica, pero si el estrés persiste:',o:['La célula prolifera indefinidamente','Culmina en inhibición de la síntesis proteica y muerte celular','Se convierte en célula madre','Elimina toda la inflamación'],a:1,e:'La UPR debe ser transitoria; si el estrés de RE no se resuelve, el sistema "no sabe salir" y termina inhibiendo la síntesis proteica → muerte celular.'},
     {q:'El cáncer de mama triple negativo (TNBC) se caracteriza por ser negativo para:',o:['Solo el receptor de estrógeno','Receptor de estrógeno, de progesterona y HER2','Solo HER2','Receptor de insulina'],a:1,e:'TNBC = negativo para RE, RP y HER2. Al no tener estos blancos, la terapia hormonal no sirve; es agresivo y de manejo complejo.'},
     {q:'¿Por qué las grasas saturadas pueden favorecer la progresión de un cáncer?',o:['Aportan antioxidantes','Generan estrés de RE e inflamación sistémica','Reducen el metabolismo tumoral','Bloquean la angiogénesis'],a:1,e:'Una dieta rica en grasas saturadas y azúcares genera estrés de RE e inflamación crónica, un microambiente que favorece un tumor más agresivo.'},
+    {q:'La rama de la patología general que estudia los MECANISMOS de producción de la enfermedad es:',o:['Etiología','Semiología','Fisiopatología','Patología de sistemas'],a:2,e:'Etiología = la causa. Fisiopatología = los mecanismos de producción (molecular, celular, tisular, sistémico). Semiología = las manifestaciones que alertan de la enfermedad.'},
+    {q:'La respuesta anormal, inarmónica y descontrolada del organismo se denomina:',o:['Homeostasis','Heterostasis','Hiperplasia','Metaplasia'],a:1,e:'Heterostasis = respuesta patológica, anormal, con hipo o hiperreacción y lesión irreversible. Caracteriza a la enfermedad. La homeostasis es la respuesta fisiológica y armónica.'},
+    {q:'Sobre un mismo factor (por ejemplo el oxígeno o la temperatura), es correcto que:',o:['Siempre actúa como agente injuriante','Siempre actúa como estímulo fisiológico','Según la circunstancia puede ser estímulo o agente injuriante','Solo daña si es de origen infeccioso'],a:2,e:'Un mismo factor, en diferentes circunstancias, puede inducir una respuesta fisiológica o patológica. Lo definen su calidad, intensidad y duración.'},
+    {q:'¿Cuáles son las tres características propias del factor que influyen en la reacción del individuo?',o:['Calidad, intensidad y duración','Color, olor y sabor','Origen, destino y velocidad','Masa, volumen y densidad'],a:0,e:'Calidad (qué tipo de factor), intensidad (nivel o concentración) y duración (agudo vs crónico).'},
+    {q:'¿Cuál de estos es un factor condicionante propio de la CÉLULA (no del individuo)?',o:['La raza','El sexo','La fase del ciclo celular en que se encuentra','El estado nutricional del paciente'],a:2,e:'De la célula: tipo celular, edad, contenido de ATP/glucógeno/antioxidantes, fase del ciclo (G0, G1, S, G2, M) y su función o posición en el tejido.'},
     {q:'La radiación es un agente injuriante genotóxico porque:',o:['Enfría los tejidos','Daña el ADN, y su reparación introduce errores/mutaciones','Aumenta el ATP mitocondrial','Estimula la SOD'],a:1,e:'La radiación rompe el ADN; el sistema repara de inmediato pero con errores, generando estrés genotóxico y mutaciones.'}
    ]},
 
@@ -51,6 +65,26 @@ s1:{
       '<b>Hiperplasia:</b> aumento del <u>número</u> de células (requiere capacidad de división). Ej. endometrio con estrógenos.',
       '<b>Atrofia:</b> disminución de tamaño/número por desuso, denervación, falta de nutrientes u hormonas.',
       '<b>Metaplasia:</b> cambio <u>reversible</u> de un tipo celular maduro por otro más resistente (ej. epitelio escamoso→columnar en Barrett). Predispone a displasia.']},
+    {h:'Requisitos del estímulo adaptativo',b:[
+      'Para que haya adaptación (y no lesión), el estímulo debe cumplir dos condiciones: ser <b>subletal</b> (no tóxico, no induce daño agudo) y ser <b>mantenido o crónico</b> en el tiempo.',
+      'Regla útil: la célula que <u>puede</u> dividirse responde con <b>hiperplasia</b> (sola o con hipertrofia); la que <u>no puede</u> dividirse (cardiomiocito, neurona, músculo esquelético) solo puede responder con <b>hipertrofia</b>.']},
+    {h:'Hipertrofia: fisiológica y patológica',b:[
+      '<b>Fisiológica:</b> por hormonas o factores de crecimiento. Ej. clásico: el <b>útero grávido</b> durante el embarazo, por estímulo estrogénico.',
+      '<b>Patológica:</b> por aumento de las exigencias funcionales. Ej. sobrecarga hemodinámica crónica → hipertrofia del miocardio.',
+      '<b>Miocardiopatía hipertrófica:</b> engrosamiento muscular <u>sin</u> causa determinada (etiología desconocida). Se pierde la alineación normal de las fibras: "<b>desalineación miocárdica</b>". Teorías: mutación de proteínas sarcoméricas, estimulación simpática anormal, isquemia subendocárdica, antecedentes familiares.']},
+    {h:'Atrofia: las siete causas',b:[
+      'Patológicas: (1) reducción de la <b>carga de trabajo</b> (desuso), (2) pérdida de la <b>inervación</b> (denervación), (3) reducción de la <b>irrigación</b>, (4) <b>nutrición</b> inadecuada, (5) pérdida de la <b>estimulación endocrina</b>, (6) <b>compresión</b> tisular, (7) aumento de la <b>autofagia</b>.',
+      'Fisiológicas: disminución de la <b>notocorda</b> en el desarrollo fetal, involución uterina tras el parto, y la atrofia muscular por inactividad (vida sedentaria).',
+      'Ejemplos patológicos: atrofia renal isquémica y atrofia cerebral en la enfermedad de Alzheimer.']},
+    {h:'Hiperplasia: los cuatro tipos',b:[
+      '<b>Congénita.</b>',
+      '<b>Fisiológica hormonal:</b> aumenta la capacidad funcional de un tejido. Ej. proliferación del epitelio glandular mamario en pubertad y lactancia; endometrio con estrógenos.',
+      '<b>Fisiológica compensadora:</b> aumenta la masa tisular tras lesión o resección parcial. Ej. regeneración hepática después de una <b>hepatectomía parcial</b>.',
+      '<b>Patológica adaptativa:</b> ej. <b>enfermedad de Graves</b>, donde anticuerpos se fijan a las células tiroideas y las estimulan a producir exceso de hormona → hiperplasia de los lóbulos tiroideos.']},
+    {h:'Metaplasia: los dos ejemplos clave',b:[
+      '<b>Respiratoria (la más frecuente):</b> epitelio <u>cilíndrico → escamoso</u> en bronquios por irritación crónica del tabaco. El escamoso resiste mejor la irritación, pero <b>pierde</b> las capacidades protectoras (cilios, mucus) frente a la infección.',
+      '<b>Esófago de Barrett:</b> el epitelio plano pluriestratificado del esófago es reemplazado por epitelio columnar metaplásico por reflujo crónico.',
+      'En ambos la metaplasia es adaptativa, pero al ser respuesta a un estímulo crónico <b>puede evolucionar hacia una lesión neoplásica</b>.']},
     {h:'Reversibilidad',b:['La adaptación es reversible mientras dure el estímulo. La <b>metaplasia</b> es reversible; la <b>anaplasia</b> (pérdida de diferenciación en cáncer) NO lo es. Si el estrés supera la capacidad adaptativa → lesión → muerte celular.']}
    ],
    questions:[
@@ -61,7 +95,51 @@ s1:{
     {q:'A diferencia de la metaplasia, la anaplasia:',o:['Es reversible','Es la pérdida irreversible de diferenciación propia del cáncer','Ocurre solo en el corazón','Aumenta la función del tejido'],a:1,e:'Metaplasia = reversible; anaplasia = desdiferenciación irreversible, marca de malignidad.'},
     {q:'La hipertrofia del tejido adiposo mal controlada se asocia a:',o:['Mayor antioxidación','Efectos proinflamatorios y riesgo metabólico','Menor riesgo de cáncer','Aumento de la SOD'],a:1,e:'El adiposo hipertrófico libera factores proinflamatorios; sumado a otros efectos, aumenta el riesgo metabólico y oncológico.'},
     {q:'Cuando el estímulo estresor supera la capacidad adaptativa de la célula, el resultado es:',o:['Hiperplasia fisiológica','Lesión y eventual muerte celular','Metaplasia permanente','Regeneración completa siempre'],a:1,e:'La adaptación tiene un límite; superado éste aparece lesión reversible y, si persiste, irreversible (muerte celular).'},
-    {q:'El crecimiento del endometrio por acción estrogénica es un ejemplo de:',o:['Hipertrofia','Hiperplasia fisiológica','Atrofia','Necrosis'],a:1,e:'Es hiperplasia hormonal fisiológica: aumenta el número de células endometriales bajo estímulo estrogénico.'}
+    {q:'El crecimiento del endometrio por acción estrogénica es un ejemplo de:',o:['Hipertrofia','Hiperplasia fisiológica','Atrofia','Necrosis'],a:1,e:'Es hiperplasia hormonal fisiológica: aumenta el número de células endometriales bajo estímulo estrogénico.'},
+    {q:'Para que un estímulo produzca adaptación y no lesión, debe ser:',o:['Intenso y agudo','Subletal y mantenido en el tiempo','Letal pero breve','Siempre de origen hormonal'],a:1,e:'Las dos condiciones son: subletal (no tóxico, sin daño agudo) y crónico/mantenido. Un estímulo letal o agudo produce lesión, no adaptación.'},
+    {q:'Una célula que NO puede dividirse (cardiomiocito, neurona) frente a un estímulo estresante responde con:',o:['Hiperplasia','Hipertrofia','Hiperplasia e hipertrofia','Metaplasia'],a:1,e:'La hiperplasia exige capacidad de división. Las células permanentes solo pueden aumentar su tamaño: hipertrofia.'},
+    {q:'El útero grávido durante el embarazo es un ejemplo de:',o:['Hipertrofia patológica','Hipertrofia fisiológica por estímulo hormonal','Hiperplasia compensadora','Metaplasia'],a:1,e:'Es hipertrofia fisiológica inducida por hormonas estrogénicas, no por aumento de exigencia funcional ni por daño.'},
+    {q:'La "desalineación miocárdica" (pérdida de la alineación normal de las fibras) caracteriza a:',o:['El infarto agudo al miocardio','La miocardiopatía hipertrófica','La atrofia cardíaca','La metaplasia cardíaca'],a:1,e:'En la miocardiopatía hipertrófica hay engrosamiento muscular sin causa determinada (etiología desconocida) con desalineación de las fibras.'},
+    {q:'¿Cuál de estas NO es una causa de atrofia patológica?',o:['Compresión tisular','Aumento de la autofagia','Pérdida de la estimulación endocrina','Aumento del flujo sanguíneo'],a:3,e:'Las causas son desuso, denervación, REDUCCIÓN de la irrigación, mala nutrición, pérdida endocrina, compresión y aumento de autofagia. Un mayor flujo tiende a lo contrario.'},
+    {q:'La regeneración del hígado después de una hepatectomía parcial es un ejemplo de:',o:['Hiperplasia compensadora','Hiperplasia hormonal','Hipertrofia patológica','Displasia'],a:0,e:'La hiperplasia compensadora aumenta la masa tisular tras una lesión o resección parcial. La hormonal, en cambio, responde a un estímulo endocrino.'},
+    {q:'En la enfermedad de Graves, la hiperplasia tiroidea se produce porque:',o:['Falta yodo en la dieta','Anticuerpos se fijan a las células tiroideas y las estimulan','Hay compresión del tejido','Se pierde la inervación de la glándula'],a:1,e:'Es una hiperplasia patológica adaptativa: los anticuerpos estimulan a las células tiroideas a producir exceso de hormonas.'},
+    {q:'La metaplasia bronquial por tabaco (cilíndrico → escamoso) tiene como desventaja que:',o:['El epitelio se vuelve menos resistente a la irritación','Se pierden las capacidades protectoras frente a la infección','Impide por completo la ventilación','Es siempre irreversible'],a:1,e:'El escamoso resiste mejor la irritación crónica, pero al perder cilios y mucus queda desprotegido frente a infecciones. Además puede evolucionar a lesión neoplásica.'}
+   ]},
+
+  {id:'degeneracion',name:'Degeneración celular',
+   notes:[
+    {h:'Concepto: el punto medio',b:[
+      'Frente al daño, la célula tiene <u>tres</u> respuestas posibles: <b>adaptación</b> (cambios reversibles de número, tamaño o fenotipo), <b>degeneración</b> y <b>muerte celular</b> (daño irreversible).',
+      'La <b>degeneración</b> es un <b>daño celular NO letal</b> caracterizado por la acumulación intracelular de cantidades anormales de sustancias, debido a una alteración metabólica de la célula. Es una <u>lesión reversible</u>: manifiesta un desequilibrio metabólico, no la muerte.',
+      'Comprende dos grandes fenómenos: la <b>acumulación de sustancias intracelulares</b> y el <b>envejecimiento celular</b>.']},
+    {h:'1. Acumulación de constituyentes normales (lípidos)',b:[
+      '<b>Triglicéridos → Esteatosis.</b> Afecta sobre todo al <u>hígado</u>, pero también corazón y riñones. Causas: toxinas (<b>alcohol</b>), obesidad, diabetes y anoxia.',
+      '<b>Colesterol.</b> Su acumulación en la íntima de arterias de gran calibre es la base de la <b>ateroesclerosis</b>; acumulado dentro de macrófagos forma los <b>xantomas</b>.']},
+    {h:'2. Acumulación de pigmentos',b:[
+      '<b>Exógenos — Carbón:</b> el depósito de polvo de carbón (antracita) presente en la polución produce <b>antracosis pulmonar</b>.',
+      '<b>Endógenos — Lipofuscina:</b> deriva de la descomposición y absorción de glóbulos sanguíneos dañados. Se acumula en miocardio y músculo liso; se la conoce como el "<b>pigmento del envejecimiento</b>".',
+      '<b>Endógenos — Melanina:</b> deriva de la oxidación de la <u>tirosina</u>.',
+      '<b>Endógenos — Hemosiderina:</b> pigmento amarillo-dorado o pardo, granuloso o cristalino, que deriva de la <u>hemoglobina</u> cuando hay más hierro del necesario en el cuerpo.']},
+    {h:'3. Acumulación de sustancias anormales: calcificaciones',b:[
+      'Depósito patológico de sales de calcio. La distinción de prueba es <u>dónde</u> ocurre:',
+      '<b>Calcificación distrófica:</b> el depósito se presenta localmente en tejidos <u>no viables o muertos</u>. Ej. el ateroma calcificado.',
+      '<b>Calcificación metastásica:</b> el depósito de calcio se presenta en tejidos <u>vivos</u> (habitualmente por hipercalcemia). Ej. huesos heterotópicos.']},
+    {h:'4. Envejecimiento celular',b:[
+      'El envejecimiento celular se asocia al acortamiento de los <b>telómeros</b>; la <b>telomerasa</b> es la enzima que los extiende.',
+      '¿Por qué la mujer tiene mayor expectativa de vida? Dos factores propuestos: factores <b>genéticos</b> (poseer dos cromosomas X) y los <b>estrógenos</b>, que inducen las telomerasas.']}
+   ],
+   questions:[
+    {q:'La degeneración celular se define como:',o:['Muerte celular programada','Daño celular NO letal por acumulación intracelular de sustancias','Aumento irreversible del número de células','Reemplazo de un tipo celular por otro'],a:1,e:'Es un daño NO letal y reversible, por alteración metabólica que lleva a acumular cantidades anormales de sustancias dentro de la célula.'},
+    {q:'La acumulación de triglicéridos en el hepatocito se denomina:',o:['Antracosis','Esteatosis','Xantoma','Hemosiderosis'],a:1,e:'Esteatosis. Afecta principalmente al hígado (también corazón y riñón) y se debe a alcohol, obesidad, diabetes o anoxia.'},
+    {q:'La acumulación de colesterol dentro de macrófagos forma:',o:['Xantomas','Antracosis','Lipofuscina','Cuerpos apoptóticos'],a:0,e:'Los xantomas son acumulación de colesterol en macrófagos. En la íntima de arterias grandes, ese mismo colesterol da la ateroesclerosis.'},
+    {q:'La antracosis pulmonar corresponde a la acumulación de un pigmento:',o:['Endógeno derivado de la hemoglobina','Exógeno: polvo de carbón','Endógeno derivado de la tirosina','Anormal de sales de calcio'],a:1,e:'El carbón (antracita) es un pigmento EXÓGENO que se deposita en el pulmón por la polución ambiental.'},
+    {q:'El "pigmento del envejecimiento", que se acumula en miocardio y músculo liso, es:',o:['Melanina','Hemosiderina','Lipofuscina','Bilirrubina'],a:2,e:'La lipofuscina deriva de la descomposición y absorción de glóbulos sanguíneos dañados y es el llamado pigmento del envejecimiento.'},
+    {q:'La hemosiderina es un pigmento que deriva de:',o:['La oxidación de la tirosina','La hemoglobina, cuando hay exceso de hierro','El polvo de carbón inhalado','El colesterol de los macrófagos'],a:1,e:'Es un pigmento amarillo-dorado o pardo, granuloso, derivado de la hemoglobina cuando hay más hierro del necesario.'},
+    {q:'La melanina deriva de:',o:['La oxidación de la tirosina','La degradación de la hemoglobina','Los triglicéridos hepáticos','Las sales de calcio'],a:0,e:'La melanina es un pigmento endógeno que deriva de la oxidación de la tirosina.'},
+    {q:'El depósito de sales de calcio en un tejido MUERTO o no viable se denomina calcificación:',o:['Metastásica','Distrófica','Fisiológica','Compensadora'],a:1,e:'Distrófica = en tejido no viable o muerto (ej. ateroma). Metastásica = en tejido VIVO, típicamente por hipercalcemia.'},
+    {q:'Un paciente con hipercalcemia deposita calcio en tejidos sanos. Esto es una calcificación:',o:['Distrófica','Metastásica','Apoptótica','Displásica'],a:1,e:'Cuando el depósito ocurre en tejidos VIVOS se llama metastásica; el término no tiene relación con metástasis tumoral.'},
+    {q:'¿Qué explica, en parte, la mayor expectativa de vida de la mujer según la clase?',o:['Mayor masa muscular','Los estrógenos inducen las telomerasas y la posesión de dos cromosomas X','Menor cantidad de mitocondrias','Mayor acumulación de lipofuscina'],a:1,e:'Se proponen factores genéticos (dos cromosomas X) y el efecto de los estrógenos induciendo telomerasas, enzima que extiende los telómeros.'},
+    {q:'A diferencia de la muerte celular, la degeneración celular:',o:['Es irreversible','Es un daño no letal y reversible','Siempre produce inflamación','Requiere activación de caspasas'],a:1,e:'La degeneración es lesión reversible; la muerte celular es la respuesta al daño irreversible.'}
    ]},
 
   {id:'muerte',name:'Muerte celular: necrosis y apoptosis',
@@ -72,6 +150,19 @@ s1:{
     {h:'Vías de la apoptosis',b:[
       '<b>Intrínseca (mitocondrial):</b> daño interno/estrés → salida de citocromo c → apoptosoma → caspasa 9 → caspasas ejecutoras (3,6,7). Regulada por familia Bcl-2 (Bax/Bak pro; Bcl-2/Bcl-xL anti).',
       '<b>Extrínseca (receptores de muerte):</b> Fas/FasL, TNF → caspasa 8 → caspasas ejecutoras.']},
+    {h:'Necrofanerosis: los signos morfológicos',b:[
+      'La necrosis es la muerte celular patológica <u>reconocible por los signos de la necrofanerosis</u>. Son los tres cambios nucleares, en orden:',
+      '<b>Picnosis:</b> cromatina <u>condensada</u> (núcleo pequeño y denso).',
+      '<b>Cariorrexis:</b> cromatina <u>dispersa</u> (el núcleo se fragmenta).',
+      '<b>Cariólisis:</b> ADN <u>disuelto</u> (el núcleo desaparece).']},
+    {h:'Qué determina la magnitud del daño',b:[
+      'Causas de daño potencialmente irreversible: <b>hipoxia tisular</b>, agentes <b>físicos</b>, <b>químicos y drogas</b>, agentes <b>infecciosos</b>, <b>defectos genéticos</b> y <b>desbalances nutricionales</b>.',
+      'La magnitud depende de: el <b>tipo de noxa</b>, su duración e intensidad; el <b>tipo de célula</b> y su capacidad de adaptación; y la <b>función celular afectada</b>: producción de ATP, integridad de membranas y citoesqueleto, síntesis de proteínas y aparato genético (ADN).']},
+    {h:'Cuándo ocurre la apoptosis',b:[
+      '<b>Causas fisiológicas:</b> embriogénesis, involución celular hormono-dependiente, renovación celular e inflamación.',
+      '<b>Causas patológicas:</b> infecciones virales, tumores y tratamientos antineoplásicos (además del daño del ADN).',
+      'Morfología: retracción celular (disminución de tamaño), condensación de la cromatina, fragmentación del ADN, activación de <b>caspasa 3</b>, formación de ampollas y <b>cuerpos apoptóticos</b>, y fagocitosis por macrófagos.',
+      'La enfermedad puede venir por <u>exceso</u> de apoptosis (pérdida de células, ej. neurodegeneración) o por <u>defecto</u> de apoptosis (supervivencia de células que debían morir, ej. cáncer).']},
     {h:'DAMPs',b:['Las células necróticas liberan <b>DAMPs</b> (ej. ATP extracelular, HMGB1) que son reconocidos por receptores (TLR, NLRP3) y desencadenan inflamación. Los desechos necróticos deben ser removidos.']}
    ],
    questions:[
@@ -82,6 +173,12 @@ s1:{
     {q:'A diferencia de la necrosis, la apoptosis:',o:['No requiere ATP','Requiere ATP y es un proceso ordenado/programado','Siempre es patológica','Rompe la membrana plasmática'],a:1,e:'La apoptosis es un proceso activo dependiente de energía (ATP) y altamente regulado, a diferencia de la necrosis "accidental".'},
     {q:'Los DAMPs liberados por células necróticas incluyen:',o:['Colágeno tipo I','ATP extracelular y HMGB1','Inmunoglobulinas','Hemoglobina fetal'],a:1,e:'DAMPs = patrones moleculares asociados a daño (ATP extracelular, HMGB1). El ATP extracelular es señal de necrosis y activa el inflamasoma.'},
     {q:'Las caspasas ejecutoras (efectoras) de la apoptosis son:',o:['Caspasa 8 y 9','Caspasa 3, 6 y 7','Caspasa 1 exclusivamente','No existen caspasas ejecutoras'],a:1,e:'Las caspasas iniciadoras (8, 9) activan a las ejecutoras (3, 6, 7), que desmantelan la célula.'},
+    {q:'Los tres signos nucleares de la necrofanerosis, en orden, son:',o:['Cariólisis → picnosis → cariorrexis','Picnosis → cariorrexis → cariólisis','Cariorrexis → cariólisis → picnosis','Picnosis → cariólisis → cariorrexis'],a:1,e:'Picnosis (cromatina condensada) → cariorrexis (cromatina dispersa/núcleo fragmentado) → cariólisis (ADN disuelto).'},
+    {q:'En la necrosis, la "picnosis" corresponde a:',o:['Cromatina condensada','Cromatina dispersa','ADN disuelto','Formación de cuerpos apoptóticos'],a:0,e:'Picnosis = condensación de la cromatina, con núcleo pequeño y denso. Es el primero de los signos de necrofanerosis.'},
+    {q:'La "cariólisis" se define como:',o:['Condensación de la cromatina','Fragmentación del núcleo','Disolución del ADN','Ruptura de la membrana plasmática'],a:2,e:'Cariólisis = el ADN se disuelve y el núcleo desaparece; es el signo más tardío de la necrofanerosis.'},
+    {q:'¿Cuál de estas es una causa FISIOLÓGICA de apoptosis?',o:['Infección viral','Tratamiento antineoplásico','Embriogénesis','Tumores'],a:2,e:'Fisiológicas: embriogénesis, involución hormono-dependiente, renovación celular e inflamación. Las virales, tumorales y antineoplásicas son patológicas.'},
+    {q:'Una enfermedad causada por DEFECTO (disminución) de la apoptosis sería:',o:['Cáncer','Neurodegeneración','Atrofia por denervación','Anemia'],a:0,e:'Si células que debían morir sobreviven, se acumulan: es el escenario del cáncer. El exceso de apoptosis, en cambio, produce pérdida celular (neurodegeneración).'},
+    {q:'La magnitud del daño celular NO depende de:',o:['La duración e intensidad de la noxa','El tipo de célula y su adaptabilidad','El color del pigmento acumulado','La función celular afectada (ATP, membranas, ADN)'],a:2,e:'Depende del tipo/duración/intensidad de la noxa, del tipo de célula y de la función comprometida: ATP, integridad de membranas y citoesqueleto, síntesis proteica y ADN.'},
     {q:'La caspasa 1, a diferencia de la caspasa 3, principalmente:',o:['Inicia la muerte celular','Activa la respuesta inflamatoria (procesa IL-1β)','Repara el ADN','Sintetiza colágeno'],a:1,e:'La caspasa 1 del inflamasoma no ejecuta apoptosis: cliva la pro-IL-1β a IL-1β activa, amplificando la inflamación.'}
    ]},
 
@@ -622,6 +719,29 @@ const FLASH={
   ['Tejido de granulación','Tejido nuevo rico en fibroblastos y vasos que rellena la herida (fase proliferativa).'],
   ['Queloide','Cicatriz por exceso de colágeno que sobrepasa los bordes de la herida.'],
   ['Fuerza tensil recuperada en proliferación vs maduración','~60% (proliferación) → ~80% (maduración).'],
+  ['Las 3 respuestas celulares al daño','Adaptación (reversible) → Degeneración (no letal) → Muerte celular (irreversible).'],
+  ['Etiología vs Fisiopatología vs Semiología','Etiología = la causa. Fisiopatología = los mecanismos. Semiología = las manifestaciones.'],
+  ['Homeostasis vs Heterostasis','Homeostasis = respuesta fisiológica y armónica. Heterostasis = patológica e inarmónica: la enfermedad.'],
+  ['3 características del factor que definen la reacción','Calidad, intensidad y duración.'],
+  ['Requisitos del estímulo adaptativo','Debe ser subletal (no tóxico) y mantenido o crónico.'],
+  ['Célula que NO puede dividirse: ¿cómo se adapta?','Solo con hipertrofia (la hiperplasia exige capacidad de división).'],
+  ['Hipertrofia fisiológica: ejemplo clásico','Útero grávido en el embarazo, por estímulo estrogénico.'],
+  ['Desalineación miocárdica','Miocardiopatía hipertrófica: engrosamiento sin causa determinada, con pérdida de la alineación de las fibras.'],
+  ['Hiperplasia compensadora: ejemplo','Regeneración hepática tras hepatectomía parcial.'],
+  ['Hiperplasia patológica adaptativa: ejemplo','Enfermedad de Graves (anticuerpos estimulan la tiroides).'],
+  ['Metaplasia respiratoria por tabaco','Cilíndrico → escamoso. Resiste la irritación pero pierde protección frente a infección.'],
+  ['Degeneración celular','Daño NO letal y reversible: acumulación intracelular de sustancias por alteración metabólica.'],
+  ['Esteatosis','Acumulación de triglicéridos (hígado > corazón, riñón). Por alcohol, obesidad, diabetes, anoxia.'],
+  ['Xantoma','Acumulación de colesterol dentro de macrófagos.'],
+  ['Antracosis pulmonar','Pigmento EXÓGENO: polvo de carbón de la polución.'],
+  ['Lipofuscina','Pigmento del envejecimiento; de glóbulos dañados. En miocardio y músculo liso.'],
+  ['Hemosiderina','Pigmento pardo-dorado derivado de la hemoglobina, por exceso de hierro.'],
+  ['Melanina: ¿de qué deriva?','De la oxidación de la tirosina.'],
+  ['Calcificación distrófica vs metastásica','Distrófica = tejido MUERTO o no viable. Metastásica = tejido VIVO (hipercalcemia).'],
+  ['Envejecimiento celular','Acortamiento de telómeros; la telomerasa los extiende. Estrógenos la inducen.'],
+  ['Necrofanerosis: los 3 signos en orden','Picnosis (condensada) → Cariorrexis (dispersa) → Cariólisis (ADN disuelto).'],
+  ['Causas fisiológicas de apoptosis','Embriogénesis, involución hormono-dependiente, renovación celular, inflamación.'],
+  ['Enfermedad por DEFECTO de apoptosis','Cáncer: sobreviven células que debían morir.'],
   ['Hallmarks del cáncer','Proliferación autónoma, evasión de supresores, resistencia a la muerte, angiogénesis, invasión y evasión inmune.'],
   ['VEGF','Factor que induce la angiogénesis tumoral.'],
  ],
@@ -776,6 +896,23 @@ const GLOSSARY={
   ['Tejido de granulacion','Tejido nuevo rico en fibroblastos y vasos que rellena la herida en la fase de proliferacion.'],
   ['Queloide','Cicatriz por exceso de colageno que sobrepasa los bordes de la herida.'],
   ['Hallmarks del cancer','Rasgos comunes: proliferacion autonoma, evasion de supresores, resistencia a la muerte, angiogenesis, invasion y evasion inmune.'],
+  ['Degeneracion celular','Dano celular NO letal y reversible: acumulacion intracelular de cantidades anormales de sustancias por alteracion metabolica.'],
+  ['Heterostasis','Respuesta anormal, inarmonica y descontrolada del organismo; caracteriza a la enfermedad. Se opone a la homeostasis.'],
+  ['Etiologia','Estudio de la causa que determina la aparicion de una enfermedad (distinta de la fisiopatologia, que estudia los mecanismos).'],
+  ['Semiologia','Estudio de las manifestaciones que alertan sobre la existencia de la enfermedad.'],
+  ['Noxa','Agente injuriante. Un mismo factor puede ser estimulo o noxa segun su calidad, intensidad y duracion.'],
+  ['Esteatosis','Acumulacion intracelular de trigliceridos, sobre todo en el higado; por alcohol, obesidad, diabetes o anoxia.'],
+  ['Xantoma','Acumulacion de colesterol dentro de macrofagos.'],
+  ['Antracosis','Deposito pulmonar de polvo de carbon (pigmento exogeno) presente en la polucion ambiental.'],
+  ['Lipofuscina','Pigmento endogeno derivado de globulos sanguineos dañados; se acumula en miocardio y musculo liso. Es el pigmento del envejecimiento.'],
+  ['Hemosiderina','Pigmento amarillo-dorado o pardo derivado de la hemoglobina cuando hay mas hierro del necesario.'],
+  ['Calcificacion distrofica','Deposito de sales de calcio en tejidos no viables o muertos (ej. ateroma).'],
+  ['Calcificacion metastasica','Deposito de sales de calcio en tejidos vivos, habitualmente por hipercalcemia. No se relaciona con metastasis tumoral.'],
+  ['Necrofanerosis','Conjunto de signos morfologicos que hacen reconocible la necrosis: picnosis, cariorrexis y cariolisis.'],
+  ['Picnosis','Condensacion de la cromatina: nucleo pequeno y denso. Primer signo de necrofanerosis.'],
+  ['Cariorrexis','Fragmentacion del nucleo con cromatina dispersa. Segundo signo de necrofanerosis.'],
+  ['Cariolisis','Disolucion del ADN: el nucleo desaparece. Signo mas tardio de la necrofanerosis.'],
+  ['Telomerasa','Enzima que extiende los telomeros; los estrogenos la inducen. Su actividad se vincula al envejecimiento celular.'],
  ],
  s2:[
   ['Anemia','Reduccion de la masa de eritrocitos funcionales; Hb < 13 g/dL (hombres) o < 12 g/dL (mujeres) segun OMS.'],
@@ -843,6 +980,23 @@ const EDGE_TAGS=Object.freeze([
 
 const CHAINS={
  s1:[
+ {id:"s1.degeneracion.esteatosis",topicId:"degeneracion",title:"Del alcohol a la esteatosis: daño que aun se puede deshacer",
+  crux:[3,7],
+  nodes:["Consumo cronico de alcohol (o obesidad, diabetes, anoxia)",
+         "El hepatocito metaboliza el exceso y altera su manejo de lipidos",
+         "Aumenta la sintesis de acidos grasos y cae su exportacion como VLDL",
+         "Los trigliceridos se acumulan dentro del hepatocito",
+         "La acumulacion es intracelular y NO letal: es degeneracion, no muerte",
+         "Aparecen vacuolas de grasa que desplazan el nucleo: esteatosis",
+         "El higado se agranda y palidece (higado graso)",
+         "Si cesa el estimulo la celula depura los lipidos: la lesion es reversible",
+         "Si el estimulo persiste, el daño avanza a esteatohepatitis y fibrosis"],
+  intruders:["La acumulacion de trigliceridos rompe la membrana y libera DAMPs","La esteatosis es irreversible desde la primera vacuola de grasa"],
+  alts:[{i:3,texts:["Se acumulan trigliceridos en el citoplasma del hepatocito","Los lipidos quedan retenidos dentro de la celula"]},{i:7,texts:["Al retirar el estimulo la celula elimina los lipidos acumulados","Es reversible si cesa la causa"]},{i:4,texts:["Es un daño no letal: degeneracion celular","La celula esta lesionada pero viva"]}],
+  pre:[{q:"En la esteatosis hepatica simple, la viabilidad del hepatocito:",opts:["Se pierde: la celula muere","Se conserva: la celula sigue viva","Depende del sexo del paciente"],a:1,model:"La esteatosis es <b>degeneracion</b>: un daño NO letal. La celula esta lesionada y acumula lipidos, pero sigue viva y puede recuperarse si se retira la causa. Por eso no genera necrosis ni inflamacion por DAMPs."},
+       {q:"Si el paciente suspende el alcohol en la etapa de esteatosis simple, el higado graso:",opts:["Progresa igual a cirrosis","Revierte","No cambia nunca"],a:1,model:"Revierte: al ser una lesion reversible, el hepatocito depura los trigliceridos acumulados. La irreversibilidad aparece recien cuando se instala la fibrosis."}],
+  why:[{after:3,tag:2,lureTags:[8,5,0],q:"¿Que capacidad del hepatocito se supera para que el trigliceido se acumule en vez de exportarse?",model:"Se satura la <b>capacidad de exportacion</b>: el hepatocito empaqueta los trigliceridos en <b>VLDL</b> para sacarlos a la sangre. Cuando la sintesis de acidos grasos supera esa capacidad (o el alcohol la inhibe), el lipido se queda dentro. Es <b>saturacion o agotamiento de capacidad</b>, no una barrera rota ni una señal por receptor.",keys:["vldl","exportacion","capacidad","se satura","sintesis supera","se acumula dentro"]},
+       {after:7,tag:9,lureTags:[10,11,3],q:"¿Por que la esteatosis simple es reversible y la fibrosis no?",model:"Porque en la esteatosis lo unico alterado es el <b>contenido</b> de la celula: al cesar el estimulo, el hepatocito metaboliza y exporta los lipidos y recupera su estructura. La fibrosis, en cambio, es <b>remodelado estructural</b>: la celula estrellada deposita colageno y cambia la arquitectura del tejido, lo que ya no se deshace. La degeneracion toca la funcion; la fibrosis toca la estructura.",keys:["contenido","cesa el estimulo","depura los lipidos","fibrosis","colageno","estructura","no se deshace"]}]},
  {id:"s1.cancer.carcinogenesis",topicId:"cancer",title:"Del ADN dañado al tumor que se nutre solo",
   crux:[1,5],
   nodes:["Carcinógeno o error replicativo daña el ADN de una célula somática",
