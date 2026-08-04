@@ -1,0 +1,14 @@
+# El HTML nunca se cachea: es quien decide que version de CSS/JS pedir.
+# Sin esto, el navegador del celular sigue sirviendo el index viejo y nunca
+# llega a pedir los archivos nuevos, aunque el sitio ya este desplegado.
+/
+  Cache-Control: no-cache, must-revalidate
+/index.html
+  Cache-Control: no-cache, must-revalidate
+
+# Los assets llevan ?v=N en la URL, asi que pueden cachearse tranquilos:
+# al cambiar la version cambia la URL y el navegador la pide de nuevo.
+/*.css
+  Cache-Control: public, max-age=31536000
+/*.js
+  Cache-Control: public, max-age=31536000
