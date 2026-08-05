@@ -80,12 +80,14 @@ const IC={
  glos:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h9"/><circle cx="4" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1" fill="currentColor" stroke="none"/></svg>',
  exam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>',
  chain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="12" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M8.1 7.2 15.9 11M15.9 13.1 8.1 16.9"/></svg>',
+ patol:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3.5h5a1 1 0 0 1 1 1V7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V4.5a1 1 0 0 1 1-1Z"/><path d="M12 11v5M9.5 13.5h5"/></svg>',
  arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
  arrowL:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',
  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>'
 };
 const SECTIONS=[
  {k:'chain',n:'Cadenas',d:'Reconstruye el mecanismo paso a paso'},
+ {k:'patol',n:'Patologías',d:'Todas las de las clases, con su mecanismo'},
  {k:'notes',n:'Resumenes',d:'Los temas de la solemne, explicados y ordenados'},
  {k:'bank', n:'Banco de preguntas',d:'~10 preguntas por tema, con correccion al instante'},
  {k:'cases',n:'Casos clinicos',d:'Pacientes con su analisis fisiopatologico'},
@@ -102,6 +104,8 @@ function secMeta(s,k){
  if(k==='notes'){var rc=readCount(s);return rc?rc+' / '+d.topics.length+' leídos':d.topics.length+' temas';}
  if(k==='bank'){const p=solDone(s);return p.done+' / '+p.total+' respondidas';}
  if(k==='cases')return d.cases.length+' casos';
+ if(k==='patol'){var pg=(typeof PATOL!=='undefined'&&PATOL[s])||[];var pn=0;pg.forEach(function(x){pn+=x.items.length;});
+  return pn?pn+' patologías · '+pg.length+' clases':'faltan las clases';}
  if(k==='chain'){var tot=chAll(s).length;if(!tot)return 'proximamente';
   var cd=Math.min(chDue(s).length,CH_MAX);return cd?cd+' hoy (~'+(cd*3)+' min)':tot+' cadenas · al día';}
  if(k==='flash'){var due=fcDue(s).length;return due?due+' pendientes hoy':(FLASH[s]||[]).length+' tarjetas · al día';}
@@ -218,6 +222,7 @@ function renderSection(){
  var readingNote=(k==='notes'&&VIEW.noteTopic);
  var body='';
  if(k==='chain')body=renderChain(s);
+ else if(k==='patol')body=renderPatol(s);
  else if(k==='notes')body=renderNotes(s);
  else if(k==='bank')body=renderBank(s);
  else if(k==='cases')body=renderCases(s);
@@ -238,6 +243,7 @@ function renderSection(){
  if(k==='bank'){if(!VIEW.quizTopic)VIEW.quizTopic=DATA[s].topics[0].id;bank={sol:s,topic:VIEW.quizTopic,i:0,answered:false,sel:null};drawQuiz();}
  if(k==='flash')initFlash(s);
  if(k==='chain'&&chAll(s).length)initChain(s);
+ if(k==='patol')patFilter();
  if(k==='glos')glosFilter();
 }
 
@@ -270,6 +276,39 @@ function renderReading(s,tid){
   +'<h1 class="rtitle">'+esc(t.name)+'</h1><div class="rrule"></div><div class="keypoints">'+pts+'</div>'
   +'<div class="readcta"><button class="btn primary" style="background:'+c+'" onclick="practiceTopic(\''+tid+'\')">Practicar este tema con preguntas &rarr;</button></div></article>'
   +'<div class="readnav">'+nav+'</div>';
+}
+
+/* ---------- PATOLOGIAS ----------
+   Catalogo de lo que nombran las clases, agrupado por clase y con
+   filtro propio: la gracia es encontrar rapido "de que iba" algo. */
+function renderPatol(s){
+ var groups=(typeof PATOL!=='undefined'&&PATOL[s])||[];
+ if(!groups.length)return '<div class="empty">Todavía no hay clases cargadas de esta solemne.<br>Cuando las subas, aparecen aquí sus patologías.</div>';
+ return '<input class="gsearch" id="patSearch" type="search" placeholder="Filtrar patología o mecanismo..." oninput="patFilter()" autocomplete="off">'
+   +'<div id="patList"></div>';
+}
+function patFilter(){
+ var s=VIEW.sol,c=DATA[s].color,inp=document.getElementById('patSearch');
+ var q=((inp&&inp.value)||'').trim().toLowerCase();
+ var norm=function(x){return String(x).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');};
+ var nq=norm(q);
+ var groups=(typeof PATOL!=='undefined'&&PATOL[s])||[];
+ var box=document.getElementById('patList');if(!box)return;
+ var html='',shown=0;
+ groups.forEach(function(g){
+  var hits=g.items.filter(function(it){
+   if(!nq)return true;
+   return norm(it.n).indexOf(nq)>=0||norm(it.q).indexOf(nq)>=0||norm(stripHtml(it.m)).indexOf(nq)>=0;
+  });
+  if(!hits.length)return;
+  shown+=hits.length;
+  html+='<div class="patgrp"><h3 class="patclase">'+esc(g.clase)+'<span>'+hits.length+'</span></h3>'
+   +hits.map(function(it){
+     return '<details class="patcard" style="--c:'+c+'"><summary><b>'+esc(it.n)+'</b><span class="patq">'+esc(it.q)+'</span></summary>'
+      +'<div class="patm">'+it.m+'</div></details>';
+   }).join('')+'</div>';
+ });
+ box.innerHTML=shown?html:'<div class="empty">Sin resultados para tu búsqueda.</div>';
 }
 
 /* ---------- REFS ---------- */
@@ -506,6 +545,7 @@ function examFinish(){
    flashcards, mnemotecnias y "Al dia" de los 3 solemnes.
    ============================================================ */
 let SEARCH_IDX=null,SEARCH_HITS=[];
+function srNorm(s){return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
 /* Solo quita etiquetas HTML reales (<b>, </u>, <span ...>). Un "<" suelto seguido de
    espacio o numero -como "dura < 2 semanas"- NO es una etiqueta y debe conservarse:
    con el regex antiguo se comia el texto hasta el siguiente ">" y la busqueda fallaba. */
@@ -525,6 +565,9 @@ function buildSearchIndex(){
   (d.cases||[]).forEach(function(cs){idx.push({s:s,type:'Caso',label:cs.title,text:stripHtml(cs.title+' '+cs.story+' '+cs.q+' '+cs.ans),go:function(){goSection(s,'cases');}});});
   (GLOSSARY[s]||[]).forEach(function(g){idx.push({s:s,type:'Glosario',label:g[0],text:stripHtml(g[0]+' '+g[1]),go:function(){goSection(s,'glos');}});});
   (FLASH[s]||[]).forEach(function(f){idx.push({s:s,type:'Flashcard',label:f[0],text:stripHtml(f[0]+' '+f[1]),go:function(){goSection(s,'flash');}});});
+  ((typeof PATOL!=='undefined'&&PATOL[s])||[]).forEach(function(g){g.items.forEach(function(it){
+    idx.push({s:s,type:'Patología',label:it.n,text:stripHtml(it.n+' '+it.q+' '+it.m),go:function(){goSection(s,'patol');}});
+  });});
   (MNEM[s]||[]).forEach(function(m){idx.push({s:s,type:'Mnemotecnia',label:m.word,text:stripHtml(m.word+' '+m.expl),go:function(){goSection(s,'mnem');}});});
   (UPDATES[s]||[]).forEach(function(u){idx.push({s:s,type:'Al día',label:u.t,text:stripHtml(u.t+' '+u.d),go:function(){goSection(s,'upd');}});});
  });
@@ -540,15 +583,22 @@ function openSearch(){
 }
 function closeSearch(){const ov=document.getElementById('searchOverlay');if(ov)ov.hidden=true;}
 function snippet(text,term){
- const low=text.toLowerCase(),p=low.indexOf(term),start=Math.max(0,p-40);
+ /* busca sobre el texto sin tildes pero recorta sobre el original,
+    para que el extracto se muestre bien escrito */
+ const low=srNorm(text),p=low.indexOf(term),start=Math.max(0,p-40);
  if(p<0)return text.slice(0,120)+(text.length>120?'…':'');
  return (start>0?'…':'')+text.slice(start,start+120)+(text.length>start+120?'…':'');
 }
 function runSearch(){
  const q=document.getElementById('searchInput').value.trim().toLowerCase(),box=document.getElementById('searchResults');
  if(q.length<2){box.innerHTML='<p class="se-hint">Escribe al menos 2 letras para buscar en todo el material.</p>';return;}
- const terms=q.split(/\s+/);
- SEARCH_HITS=SEARCH_IDX.filter(function(e){var hay=e.text.toLowerCase();return terms.every(function(t){return hay.indexOf(t)>=0;});}).slice(0,40);
+ /* Sin quitar tildes, buscar "neumonia" no encontraba "Neumonia" con tilde,
+    que es justo como se escribe casi todo el material medico en espanol. */
+ const terms=srNorm(q).split(/\s+/);
+ SEARCH_HITS=SEARCH_IDX.filter(function(e){
+   if(e.norm===undefined)e.norm=srNorm(e.text);
+   return terms.every(function(t){return e.norm.indexOf(t)>=0;});
+ }).slice(0,40);
  if(!SEARCH_HITS.length){box.innerHTML='<p class="se-hint">Sin resultados para "'+esc(q)+'".</p>';return;}
  box.innerHTML=SEARCH_HITS.map(function(e,i){
   var col=DATA[e.s].color,lab=e.label.length>96?e.label.slice(0,96)+'…':e.label;

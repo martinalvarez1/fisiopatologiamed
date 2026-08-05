@@ -1413,3 +1413,67 @@ const CHAINS={
        {after:9,tag:2,lureTags:[9,7,4],q:"¿Por qué una relación ΔAG/ΔHCO₃ cercana a 1 permite descartar un segundo trastorno metabólico?",model:"Porque la titulación es <b>1:1</b>: cada mEq de cetoácido aporta un H⁺ que <b>consume un mEq de HCO₃⁻</b> y deja en su lugar un mEq de anión no medido. Si el único proceso es la cetoacidosis, lo que sube el AG debe igualar lo que baja el HCO₃⁻ (razón ≈ 1). Si el HCO₃⁻ cayó más de lo que subió el AG (razón bajo 1) hay una segunda acidosis de AG normal (diarrea o pérdida urinaria de cetoaniones); si cayó menos (razón sobre 2) hay una alcalosis metabólica agregada (vómitos). Ojo: esta relación solo juzga el eje metabólico; el componente respiratorio se evalúa aparte comparando la PaCO₂ medida con la esperada.",keys:["titulacion 1 a 1","cada mEq de acido consume un hco3","deja un anion no medido","delta ag igual delta hco3","bajo 1 acidosis ag normal agregada","sobre 2 alcalosis metabolica","eje metabolico"]}]}
  ]
 };
+
+/* ============================================================
+   PATOLOGIAS — catalogo de todo lo nombrado en las clases 2026,
+   con su mecanismo, agrupado por clase.
+   Fuente: PDFs del curso (Fisiopatologia Medica USS 2026),
+   clases 1 a 5.
+   ============================================================ */
+const PATOL={
+ s1:[
+  {clase:'Clase 1 · Respuesta celular al estrés',items:[
+   {n:'Síndrome Hemolítico Urémico (SHU)',q:'E. coli productora de toxina Shiga tras carne mal cocida',m:'La toxina se internaliza, llega al RE y una subunidad pasa al citosol: <b>inhibe la elongación de la síntesis proteica</b>. Sin síntesis, la célula muere. Afecta epitelio renal, sangre y SNC → tríada de anemia hemolítica microangiopática + trombocitopenia + injuria renal aguda.'},
+   {n:'Enfermedad de Alzheimer',q:'Deterioro cognitivo por proteína aberrante',m:'APP mutada (2–5%) o un entorno alterado enlentecen su tránsito → predomina el corte por la <b>vía B</b> → péptido <b>β-amiloide</b> neurotóxico → placas + <b>estrés de RE (UPR)</b> sostenido → inhibición de la síntesis proteica → muerte neuronal en hipocampo y corteza.'},
+   {n:'Cáncer de mama triple negativo (TNBC)',q:'RE(−) RP(−) HER2(−), agresivo',m:'Al no tener esos blancos no responde a terapia hormonal ni anti-HER2. Las células están "<b>adictas al estrés de RE</b>", lo que les da ventaja proliferativa. Grasas saturadas e inflamación sistémica favorecen la progresión.'},
+   {n:'Miocardiopatía hipertrófica',q:'Engrosamiento del miocardio sin causa determinada',m:'Etiología desconocida. Se pierde la alineación normal de las fibras: "<b>desalineación miocárdica</b>". Teorías: mutación de proteínas sarcoméricas, estimulación simpática anormal, isquemia subendocárdica, antecedentes familiares.'},
+   {n:'Enfermedad de Graves',q:'Hipertiroidismo con bocio',m:'Ejemplo de <b>hiperplasia patológica adaptativa</b>: anticuerpos se fijan a las células tiroideas y las estimulan a producir exceso de hormona → hiperplasia de los lóbulos tiroideos.'},
+   {n:'Esófago de Barrett',q:'Reflujo gastroesofágico crónico',m:'<b>Metaplasia</b>: el epitelio plano pluriestratificado del esófago es reemplazado por epitelio columnar, más resistente al ácido. Es lesión premaligna → adenocarcinoma.'},
+   {n:'Metaplasia bronquial por tabaco',q:'Irritación crónica de la vía aérea',m:'Epitelio <b>cilíndrico → escamoso</b>. Resiste mejor la irritación pero pierde cilios y mucus: queda desprotegido frente a la infección. Puede evolucionar a lesión neoplásica.'},
+   {n:'Esteatosis hepática',q:'Alcohol, obesidad, diabetes o anoxia',m:'<b>Degeneración celular</b>: acumulación intracelular de triglicéridos por alteración metabólica. Daño NO letal y <u>reversible</u> si cesa el estímulo. Afecta sobre todo al hígado, también corazón y riñón.'},
+   {n:'Ateroesclerosis (acumulación de colesterol)',q:'Depósito lipídico arterial',m:'Acumulación de colesterol en la <b>íntima de arterias de gran calibre</b>. El mismo colesterol acumulado dentro de macrófagos forma los <b>xantomas</b>.'},
+   {n:'Antracosis pulmonar',q:'Polución ambiental / polvo de carbón',m:'Acumulación del pigmento <b>exógeno</b> carbón (antracita) en el pulmón.'},
+   {n:'Calcificación distrófica vs metastásica',q:'Depósito patológico de sales de calcio',m:'<b>Distrófica</b>: en tejidos no viables o muertos (ej. ateroma). <b>Metastásica</b>: en tejidos vivos, típicamente por hipercalcemia. El nombre no tiene relación con metástasis tumoral.'}
+  ]},
+  {clase:'Clase 2 · Lesión celular',items:[
+   {n:'Hipoxia e isquemia',q:'Disminución del aporte de O₂ al tejido',m:'Interrumpe el metabolismo oxidativo y la generación de ATP → ↑ metabolismo anaerobio, ↓ pH y acumulación de <b>ácido láctico</b>. La <b>isquemia</b> es la caída del aporte sanguíneo (hipoxia isquémica); la <b>anoxia</b> es la ausencia total de O₂.'},
+   {n:'Anemia e intoxicación por tóxicos',q:'Fallo del transporte de O₂',m:'Otra causa de hipoxia: baja capacidad de transporte por la hemoglobina, sea por Hb baja (<b>anemia</b>) o por tóxicos que inhiben ese transporte.'},
+   {n:'Daño por reperfusión',q:'Corazón isquémico que se revasculariza',m:'Al reperfundir, la llegada brusca de O₂ dispara una producción masiva de <b>especies reactivas del oxígeno (ERDO)</b> que supera las defensas antioxidantes y agrava la lesión.'},
+   {n:'Retinopatía del prematuro (ROP)',q:'Recién nacido de menos de 37 semanas expuesto a O₂',m:'La <b>hiperoxia</b> interfiere el desarrollo de la vasculatura retinal y lleva a formación de tejido cicatricial. Es una de las principales causas de ceguera infantil en Chile.'},
+   {n:'Toxicidad pulmonar por hiperoxia',q:'O₂ normobárico prolongado',m:'Respirar O₂ a 1 atmósfera por 24 h no daña, pero la exposición prolongada sí: la hiperoxia alveolar genera radicales libres que exceden la defensa celular → inflamación, sobreexpresión génica, necrosis y apoptosis.'},
+   {n:'Daño cerebrovascular',q:'Patología del SNC mediada por radicales libres',m:'Tres mecanismos ligados a ERDO: injuria vascular con edema, alteración de flujos regionales e isquemia.'},
+   {n:'Enfermedades priónicas',q:'Agente infeccioso sin ácido nucleico',m:'Desde el descubrimiento de los <b>priones</b> se amplió el concepto de agente biológico: proteínas mal plegadas capaces de inducir el plegamiento anómalo de otras.'},
+   {n:'Explosión respiratoria del fagocito',q:'ERDO al servicio de la defensa',m:'Los fagocitos aumentan el consumo de O₂ y lo transforman en <b>anión superóxido</b> vía NADPH-oxidasa. La <b>mieloperoxidasa</b> genera ácido hipocloroso, potente bactericida. Un granulocito fagocita hasta 100 bacterias antes de lisarse por autoagresión.'},
+   {n:'Envejecimiento por radicales libres',q:'Hipótesis del envejecimiento oxidativo',m:'Las especies reactivas producidas normalmente por el metabolismo dañan ADN y otras moléculas a lo largo de la vida → enfermedades degenerativas, lesiones malignas y pérdida celular.'}
+  ]},
+  {clase:'Clase 3 · Manifestaciones generales',items:[
+   {n:'Neumonía bacteriana (caso guía)',q:'El ejemplo que ordena todo el razonamiento fisiopatológico',m:'<b>1. Proceso fundamental:</b> infección del tejido pulmonar → inflamación aguda → ↑ permeabilidad vascular → exudado alveolar. <b>2. Consecuencia fisiológica:</b> alvéolos ocupados → ↓ ventilación efectiva → alteración V/Q → <b>hipoxemia</b>. <b>3. Manifestaciones:</b> generales (fiebre, escalofríos, fatiga, taquicardia, leucocitosis, ↑PCR) y locales (tos, expectoración, dolor torácico, disnea, crepitaciones).'},
+   {n:'Fiebre',q:'Manifestación general cardinal',m:'Aumento del <u>punto de regulación térmico</u> del hipotálamo por acción de <b>pirógenos</b>. Endógenos: TNF-α, IL-1, IL-6 e interferón. Dos rasgos: sube la temperatura interna Y el centro termorregulador pasa a regular a un nivel más alto.'},
+   {n:'Dolor',q:'Nocicepción',m:'Los receptores son terminaciones nerviosas libres de piel, músculo y vísceras. Su neurotransmisor es la <b>sustancia P</b>: los opiáceos alivian el dolor inhibiendo su liberación.'},
+   {n:'Edema',q:'Acúmulo anormal de líquido intersticial',m:'Tres mecanismos: ↑ presión <b>hidrostática</b>, ↓ presión <b>oncótica</b>, o alteración de la <b>permeabilidad</b> capilar. Rige Starling: PNF = P hidrostática neta − P oncótica neta. Filtra si PNF es mayor que 0; reabsorbe si es menor.'},
+   {n:'Edema por presión hidrostática',q:'Causas concretas',m:'Retención de Na⁺ y agua vía aldosterona: insuficiencia renal, <b>síndrome de Cushing</b>, corticoides, <b>cirrosis</b> (no metaboliza aldosterona). O aumento de presión capilar: várices, tromboflebitis, congestión cardíaca, sobrecarga de volumen.'},
+   {n:'Edema por presión oncótica',q:'Causas concretas',m:'↓ presión oncótica capilar: pérdida de proteínas (<b>quemaduras</b>, pérdidas renales), malnutrición, producción hepática ineficiente. O ↑ presión oncótica intersticial: respuestas inflamatorias sistémicas, alergias, traumatismos.'},
+   {n:'VHS elevada',q:'Velocidad de sedimentación hemática',m:'Mide la tendencia de la sangre a sedimentar formando "pilas de monedas". En la gran mayoría de las patologías está aumentada, con muy pocas excepciones.'},
+   {n:'Leucocitosis',q:'Aumento de leucocitos circulantes',m:'Manifestación general inespecífica: acompaña infección, daño tisular y respuesta de fase aguda.'},
+   {n:'Compromiso de conciencia',q:'Alteración neurológica sistémica',m:'Se analiza con la relación entre presión intracraneal (PIC), volumen intracraneal (VIC) y flujo sanguíneo cerebral (FSC).'},
+   {n:'Respuesta de fase aguda',q:'Reacción sistémica del organismo',m:'Ante infección, daño tisular, neoplasia o desorden inmunológico varían proteínas plasmáticas de origen hepático: <b>haptoglobina, proteína C reactiva, amiloide A sérico, ceruloplasmina, α1-glicoproteína ácida y fibrinógeno</b>.'}
+  ]},
+  {clase:'Clase 4 · Inflamación',items:[
+   {n:'Inflamación aguda',q:'Respuesta protectora inmediata',m:'Fases: vasodilatación local (hiperemia) → ↑ permeabilidad capilar → exudado que diluye la toxina → marginación, rodamiento, adhesión firme y <b>diapédesis</b> de leucocitos → quimiotaxis. Signos clásicos: rubor, calor, tumor, dolor e impotencia funcional.'},
+   {n:'Inflamación crónica',q:'Persistencia del agente',m:'Cambia el infiltrado: predominan mononucleares (macrófagos y linfocitos) y coexisten destrucción tisular, angiogénesis y fibrosis. El tejido pierde función.'},
+   {n:'Sistema del complemento',q:'Mediador amplificador',m:'Actúa como mediador de la inflamación junto a las moléculas de adhesión endotelio-leucocitarias, que son las que hacen posible el reclutamiento.'}
+  ]},
+  {clase:'Clase 5 · Regeneración y reparación',items:[
+   {n:'Regeneración hepática',q:'El modelo de regeneración por excelencia',m:'Tras hepatectomía parcial, los <b>hepatocitos</b> son los primeros en proliferar, empezando alrededor de la vena porta. Participan <b>HGF</b> y el activador del plasminógeno tipo uroquinasa (<b>uPA-uPAR</b>), que se eleva a los 5 minutos.'},
+   {n:'Cicatrización por primera intención',q:'Incisión quirúrgica limpia y suturada',m:'Pérdida limitada de células epiteliales y conectivo, con bordes aproximados. Predomina la <b>regeneración</b> sobre la reparación; cicatriz mínima.'},
+   {n:'Cicatrización por segunda intención',q:'Herida amplia o sobreinfectada',m:'Bordes no adosados. Mayor reacción inflamatoria, abundante <b>tejido granulatorio</b> y extenso depósito de colágeno → gran cicatriz. Requiere remover tejido muerto y detritus antes de terminar el proceso.'},
+   {n:'Queloide',q:'Complicación por exceso de reparación',m:'Formación excesiva de los componentes de la reparación: colágeno que <u>sobrepasa los bordes</u> de la herida original. Junto a la cicatriz hipertrófica forman el grupo II de complicaciones.'},
+   {n:'Contractura',q:'Complicación frecuente en quemaduras',m:'Tercer grupo de complicaciones: la retracción del tejido cicatricial limita el movimiento. Típica de las quemaduras extensas.'},
+   {n:'Dehiscencia y ulceración',q:'Complicación por cicatrización deficiente',m:'Primer grupo de complicaciones: la reparación no alcanza y la herida se abre o se ulcera.'},
+   {n:'Retraso por desnutrición',q:'Factor general modificador',m:'La desnutrición enlentece y deteriora la cicatrización. La <b>vitamina C</b> es necesaria para la síntesis de colágeno; la <b>vitamina A</b> estimula la formación de capilares y la síntesis de colágeno.'},
+   {n:'Factores que modifican la reparación',q:'Locales y generales',m:'<b>Locales:</b> infección, tejido necrótico, cuerpo extraño e isquemia local. <b>Generales:</b> edad, glucocorticoides, nutrición y enfermedades sistémicas. En el anciano: menor espesor cutáneo, menos colágeno y pérdida de elasticidad.'}
+  ]}
+ ],
+ s2:[],
+ s3:[]
+};
