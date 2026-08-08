@@ -81,6 +81,7 @@ const IC={
  exam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>',
  chain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="12" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M8.1 7.2 15.9 11M15.9 13.1 8.1 16.9"/></svg>',
  patol:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3.5h5a1 1 0 0 1 1 1V7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V4.5a1 1 0 0 1 1-1Z"/><path d="M12 11v5M9.5 13.5h5"/></svg>',
+ libro:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H18a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5.5A1.5 1.5 0 0 1 4 17.5v-12Z"/><path d="M4 16.5A1.5 1.5 0 0 1 5.5 15H19"/><path d="M8.5 8h6M8.5 11h4"/></svg>',
  arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
  arrowL:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',
  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>'
@@ -88,6 +89,7 @@ const IC={
 const SECTIONS=[
  {k:'chain',n:'Cadenas',d:'Reconstruye el mecanismo paso a paso'},
  {k:'patol',n:'Patologías',d:'Todas las de las clases, con su mecanismo'},
+ {k:'libro',n:'Preguntas del libro',d:'Robbins: de aquí dijo el profe que sale la prueba'},
  {k:'notes',n:'Resumenes',d:'Los temas de la solemne, explicados y ordenados'},
  {k:'bank', n:'Banco de preguntas',d:'~10 preguntas por tema, con correccion al instante'},
  {k:'cases',n:'Casos clinicos',d:'Pacientes con su analisis fisiopatologico'},
@@ -106,6 +108,8 @@ function secMeta(s,k){
  if(k==='cases')return d.cases.length+' casos';
  if(k==='patol'){var pg=(typeof PATOL!=='undefined'&&PATOL[s])||[];var pn=0;pg.forEach(function(x){pn+=x.items.length;});
   return pn?pn+' patologías · '+pg.length+' clases':'faltan las clases';}
+ if(k==='libro'){var lq=(typeof LIBROQ!=='undefined'&&LIBROQ[s])||[];
+  return lq.length?lq.length+' preguntas del Robbins':'proximamente';}
  if(k==='chain'){var tot=chAll(s).length;if(!tot)return 'proximamente';
   var cd=Math.min(chDue(s).length,CH_MAX);return cd?cd+' hoy (~'+(cd*3)+' min)':tot+' cadenas · al día';}
  if(k==='flash'){var due=fcDue(s).length;return due?due+' pendientes hoy':(FLASH[s]||[]).length+' tarjetas · al día';}
@@ -223,6 +227,7 @@ function renderSection(){
  var body='';
  if(k==='chain')body=renderChain(s);
  else if(k==='patol')body=renderPatol(s);
+ else if(k==='libro')body=renderLibro(s);
  else if(k==='notes')body=renderNotes(s);
  else if(k==='bank')body=renderBank(s);
  else if(k==='cases')body=renderCases(s);
@@ -244,6 +249,7 @@ function renderSection(){
  if(k==='flash')initFlash(s);
  if(k==='chain'&&chAll(s).length)initChain(s);
  if(k==='patol')patFilter();
+ if(k==='libro'){lb={sol:s,tema:lb.tema||'todos',i:0,answered:false,sel:null,pool:lbPool(s,lb.tema||'todos')};drawLibro();}
  if(k==='glos')glosFilter();
 }
 
@@ -277,6 +283,46 @@ function renderReading(s,tid){
   +'<div class="readcta"><button class="btn primary" style="background:'+c+'" onclick="practiceTopic(\''+tid+'\')">Practicar este tema con preguntas &rarr;</button></div></article>'
   +'<div class="readnav">'+nav+'</div>';
 }
+
+/* ---------- PREGUNTAS DEL LIBRO ----------
+   Banco aparte, sacado del Robbins, con la pagina del libro a la vista:
+   el profesor aviso que la solemne sale de ahi. */
+let lb={sol:null,tema:'todos',i:0,answered:false,sel:null,pool:[]};
+function lbPool(s,tema){
+ var all=(typeof LIBROQ!=='undefined'&&LIBROQ[s])||[];
+ return tema==='todos'?all.slice():all.filter(function(q){return q.tema===tema;});
+}
+function renderLibro(s){
+ var all=(typeof LIBROQ!=='undefined'&&LIBROQ[s])||[];
+ if(!all.length)return '<div class="empty">Todavía no hay preguntas del libro para esta solemne.</div>';
+ var temas=DATA[s].topics.filter(function(t){return all.some(function(q){return q.tema===t.id;});});
+ var c=DATA[s].color;
+ var chips='<button class="tp '+(lb.tema==='todos'?'active':'')+'" style="'+(lb.tema==='todos'?'background:'+c:'')+'" onclick="lbPick(\'todos\')">Todas<span class="badge2">'+all.length+'</span></button>'
+  +temas.map(function(t){var n=all.filter(function(q){return q.tema===t.id;}).length;
+    return '<button class="tp '+(lb.tema===t.id?'active':'')+'" style="'+(lb.tema===t.id?'background:'+c:'')+'" onclick="lbPick(\''+t.id+'\')">'+esc(t.name)+'<span class="badge2">'+n+'</span></button>';}).join('');
+ return '<p class="secintro">Preguntas construidas sobre el <b>Compendio de Robbins y Cotran, 9ª ed.</b> Cada una indica la página del libro para que puedas ir a leerla.</p>'
+  +'<div class="topicpick">'+chips+'</div><div id="lbArea"></div>';
+}
+function lbPick(t){lb.tema=t;lb.i=0;lb.answered=false;lb.sel=null;lb.pool=lbPool(lb.sol,t);renderSection();}
+function drawLibro(){
+ var area=document.getElementById('lbArea');if(!area)return;
+ if(!lb.pool.length){area.innerHTML='<div class="empty">Sin preguntas para este tema.</div>';return;}
+ var c=DATA[lb.sol].color,i=lb.i,q=lb.pool[i],pct=Math.round(i/lb.pool.length*100);
+ var opts=q.o.map(function(o,oi){var cls='opt';
+   if(lb.answered){if(oi===q.a)cls+=' correct';else if(oi===lb.sel)cls+=' wrong';}
+   return '<button class="'+cls+'" '+(lb.answered?'disabled':'')+' onclick="lbAnswer('+oi+')"><span class="lt">'+String.fromCharCode(65+oi)+'</span><span>'+esc(o)+'</span></button>';}).join('');
+ var explain=lb.answered?'<div class="explain '+(lb.sel===q.a?'ok':'no')+'"><b>'+(lb.sel===q.a?'Correcto. ':'Incorrecto. ')+'</b>'+q.e+'</div>':'';
+ area.innerHTML='<div class="qmeta"><span class="prog">Pregunta '+(i+1)+' de '+lb.pool.length+'</span><span class="lbpag">'+esc(q.pag||'')+'</span></div>'
+  +'<div class="bar"><i style="width:'+pct+'%;background:'+c+'"></i></div><div style="height:14px"></div>'
+  +'<div class="qcard"><div class="qn">Robbins · '+esc(q.pag||'')+'</div><div class="qtext">'+esc(q.q)+'</div>'+opts+explain
+  +'<div class="qnav"><button class="btn" onclick="lbPrev()" '+(i===0?'disabled':'')+'>Anterior</button>'
+  +(i<lb.pool.length-1?'<button class="btn primary" style="background:'+c+'" onclick="lbNext()" '+(lb.answered?'':'disabled')+'>Siguiente</button>'
+    :'<button class="btn primary" style="background:'+c+'" onclick="lbPick(lb.tema)" '+(lb.answered?'':'disabled')+'>Reiniciar</button>')
+  +'</div></div>';
+}
+function lbAnswer(oi){if(lb.answered)return;lb.answered=true;lb.sel=oi;drawLibro();}
+function lbNext(){lb.i++;lb.answered=false;lb.sel=null;drawLibro();}
+function lbPrev(){if(lb.i>0){lb.i--;lb.answered=false;lb.sel=null;drawLibro();}}
 
 /* ---------- PATOLOGIAS ----------
    Catalogo de lo que nombran las clases, agrupado por clase y con
