@@ -153,7 +153,8 @@ function openNote(tid){VIEW.noteTopic=tid;markRead(VIEW.sol,tid);route();}
 function notesIndex(){VIEW.noteTopic=null;route();}
 function practiceTopic(tid){VIEW.section='bank';VIEW.quizTopic=tid;VIEW.noteTopic=null;route();}
 function goHome(){VIEW={screen:'home',sol:null,section:null,quizTopic:null};route();}
-function openSol(s){VIEW={screen:'hub',sol:s,section:null,quizTopic:DATA[s].topics[0].id};route();}
+var LOCKED={s2:true,s3:true};
+function openSol(s){if(LOCKED[s])return;VIEW={screen:'hub',sol:s,section:null,quizTopic:DATA[s].topics[0].id};route();}
 function openSection(k){VIEW.screen='section';VIEW.section=k;if(k==='notes')VIEW.noteTopic=null;route();}
 function backToHub(){VIEW.screen='hub';VIEW.section=null;route();}
 function route(){window.scrollTo(0,0);
@@ -187,9 +188,16 @@ function animateCounts(root){
 function renderHome(){
  var sols=['s1','s2','s3'],totDone=0,totAll=0;
  var rows=sols.map(function(s){
-  var d=DATA[s],pr=solDone(s),pct=pr.total?Math.round(pr.done/pr.total*100):0;totDone+=pr.done;totAll+=pr.total;
+  var d=DATA[s],pr=solDone(s),pct=pr.total?Math.round(pr.done/pr.total*100):0;
+  var locked=!!LOCKED[s];
+  if(!locked){totDone+=pr.done;totAll+=pr.total;}
   var scale=s==='s1'?'Escala celular':s==='s2'?'Escala sist\u00e9mica':'Escala de \u00f3rgano';
   var temas=d.topics.map(function(t){return esc(t.name);}).join(' \u00b7 ');
+  if(locked)return '<button class="solrow locked" style="--c:'+d.color+'" onclick="return false" aria-disabled="true">'
+   +'<span class="sr-chip">'+d.code.slice(1)+'</span>'
+   +'<span class="sr-mid"><span class="sr-scale">'+scale+'</span>'
+   +'<h2>'+esc(d.title)+'</h2><span class="sr-topics">'+temas+'</span></span>'
+   +'<span class="sr-end"><span class="sr-soon">Pr\u00f3ximamente</span></span></button>';
   return '<button class="solrow" style="--c:'+d.color+'" onclick="openSol(\''+s+'\')">'
    +'<span class="sr-chip">'+d.code.slice(1)+'</span>'
    +'<span class="sr-mid"><span class="sr-scale">'+scale+'</span>'
@@ -620,6 +628,7 @@ function goSection(s,k){VIEW={screen:'section',sol:s,section:k,quizTopic:DATA[s]
 function buildSearchIndex(){
  const idx=[];
  ['s1','s2','s3'].forEach(function(s){
+  if(LOCKED[s])return;
   const d=DATA[s];if(!d)return;
   d.topics.forEach(function(t){
    const body=t.notes.map(function(n){return n.h+' '+n.b.join(' ');}).join(' ');

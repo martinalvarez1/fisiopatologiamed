@@ -223,6 +223,13 @@ body{overflow-wrap:break-word}
 .sr-go{display:inline-flex;color:var(--c);transition:transform .22s}
 .sr-go svg{width:20px;height:20px}
 .solrow:hover .sr-go{transform:translateX(5px)}
+.solrow.locked{cursor:default;opacity:.62}
+.solrow.locked:hover{transform:none;box-shadow:var(--shadow);border-color:var(--line)}
+.solrow.locked:hover::before{transform:scaleY(.4)}
+.solrow.locked:hover::after{opacity:0}
+.solrow.locked .sr-chip{filter:grayscale(1)}
+.sr-soon{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;letter-spacing:.01em;
+  color:var(--muted);background:var(--panel-2,var(--bg));border:1px solid var(--line);border-radius:100px;padding:6px 12px}
 @media(max-width:760px){
   .solrow{grid-template-columns:auto 1fr;gap:16px;padding:20px 18px 20px 16px;row-gap:14px}
   .sr-end{grid-column:1/-1;justify-content:space-between;width:100%;padding-top:2px;border-top:1px solid var(--line)}
