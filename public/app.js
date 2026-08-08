@@ -91,7 +91,7 @@ const SECTIONS=[
  {k:'patol',n:'Patologías',d:'Todas las de las clases, con su mecanismo'},
  {k:'libro',n:'Preguntas del libro',d:'Robbins: de aquí dijo el profe que sale la prueba'},
  {k:'notes',n:'Resumenes',d:'Los temas de la solemne, explicados y ordenados'},
- {k:'bank', n:'Banco de preguntas',d:'~10 preguntas por tema, con correccion al instante'},
+ {k:'bank', n:'Banco de preguntas',d:'Preguntas por tema, con correccion al instante'},
  {k:'cases',n:'Casos clinicos',d:'Pacientes con su analisis fisiopatologico'},
  {k:'flash',n:'Flashcards',d:'Tarjetas para memorizar de un vistazo'},
  {k:'refs', n:'Datos clave',d:'Valores normales y tablas de referencia'},
@@ -101,6 +101,22 @@ const SECTIONS=[
  {k:'exam', n:'Modo examen',d:'Simulacro mezclado con puntaje final'}
 ];
 function secDef(k){return SECTIONS.find(s=>s.k===k);}
+/* ¿esta seccion tiene algo que mostrar en esta solemne? */
+function secTiene(s,k){
+ var d=DATA[s];if(!d)return false;
+ var g=function(o){return (typeof o!=='undefined'&&o[s])||[];};
+ if(k==='notes'||k==='bank'||k==='exam')return d.topics.length>0;
+ if(k==='cases')return (d.cases||[]).length>0;
+ if(k==='chain')return g(typeof CHAINS!=='undefined'?CHAINS:{}).length>0;
+ if(k==='patol'){var p=g(typeof PATOL!=='undefined'?PATOL:{});return p.length>0;}
+ if(k==='libro')return g(typeof LIBROQ!=='undefined'?LIBROQ:{}).length>0;
+ if(k==='flash')return g(typeof FLASH!=='undefined'?FLASH:{}).length>0;
+ if(k==='refs')return g(typeof REFS!=='undefined'?REFS:{}).length>0;
+ if(k==='upd')return g(typeof UPDATES!=='undefined'?UPDATES:{}).length>0;
+ if(k==='mnem')return g(typeof MNEM!=='undefined'?MNEM:{}).length>0;
+ if(k==='glos')return g(typeof GLOSSARY!=='undefined'?GLOSSARY:{}).length>0;
+ return true;
+}
 function secMeta(s,k){
  const d=DATA[s];
  if(k==='notes'){var rc=readCount(s);return rc?rc+' / '+d.topics.length+' leídos':d.topics.length+' temas';}
@@ -196,7 +212,7 @@ function renderHome(){
   +'<stop offset="0" stop-color="#6a51d8"/><stop offset=".5" stop-color="#c8294a"/><stop offset="1" stop-color="#0f8f83"/>'
   +'</linearGradient></defs><polyline points="'+pts.join(' ')+'"/></svg></div>'
   +'</header>'
-  +'<div class="picklabel"><h2>Elige una solemne</h2><i></i><span>9 secciones cada una</span></div>'
+  +'<div class="picklabel"><h2>Elige una solemne</h2><i></i><span>Resúmenes, práctica y cadenas</span></div>'
   +'<div class="sollist">'+rows+'</div></div>';
  animateCounts(app);
 }
@@ -204,7 +220,9 @@ function renderHome(){
 /* ---------- HUB ---------- */
 function renderHub(){
  const s=VIEW.sol,d=DATA[s],c=d.color,pr=solDone(s),pct=pr.total?Math.round(pr.done/pr.total*100):0;
- const cards=SECTIONS.map(sec=>
+ /* Solo se muestran las secciones que TIENEN contenido en esta solemne.
+    Antes aparecian tarjetas vacias que solo estorbaban. */
+ const cards=SECTIONS.filter(sec=>secTiene(s,sec.k)).map(sec=>
   '<button class="hubcard" style="--c:'+c+'" onclick="openSection(\''+sec.k+'\')">'
   +'<span class="arrow">'+IC.arrow+'</span>'
   +'<span class="ic">'+IC[sec.k]+'</span>'
@@ -462,7 +480,9 @@ function fcRender(){
  }
  flash.style.display='';
  const o=fcState.deck[fcState.i],st=SRS[o.key]||{box:1};
- front.textContent=o.card[0];back.textContent=o.card[1];
+ /* El texto de las tarjetas viene de data.js (confiable) y trae <b>/<u>.
+    Con textContent se veian las etiquetas escritas como texto literal. */
+ front.innerHTML=o.card[0];back.innerHTML=o.card[1];
  count.textContent='Tarjeta '+(fcState.i+1)+' / '+fcState.deck.length+(fcState.ahead?' - repaso libre':' - pendientes hoy');
  box.textContent='Nivel '+(st.box||1)+'/5';
  if(bar){var total=fcState.reviewed+(fcState.deck.length-fcState.i);bar.style.width=(total?Math.round(fcState.reviewed/total*100):0)+'%';}
@@ -558,7 +578,7 @@ function renderExamStart(s){
   +'<button class="btn" onclick="startExam(\''+s+'\','+totalQ+')">Examen completo ('+totalQ+')</button></div></div>';
 }
 function startExam(s,n){let pool=[];DATA[s].topics.forEach(t=>t.questions.forEach(q=>pool.push({q:q,topic:t.name})));
- pool=pool.sort(function(){return Math.random()-.5;});if(n>0)pool=pool.slice(0,n);
+ for(var z=pool.length-1;z>0;z--){var y=Math.floor(Math.random()*(z+1));var tmp=pool[z];pool[z]=pool[y];pool[y]=tmp;}if(n>0)pool=pool.slice(0,n);
  exam={pool:pool,i:0,answered:false,correct:0,sel:null,sol:s};drawExam();}
 function drawExam(){
  const s=exam.sol,c=DATA[s].color,item=exam.pool[exam.i],q=item.q,pct=Math.round(exam.i/exam.pool.length*100);
@@ -611,6 +631,12 @@ function buildSearchIndex(){
   (d.cases||[]).forEach(function(cs){idx.push({s:s,type:'Caso',label:cs.title,text:stripHtml(cs.title+' '+cs.story+' '+cs.q+' '+cs.ans),go:function(){goSection(s,'cases');}});});
   (GLOSSARY[s]||[]).forEach(function(g){idx.push({s:s,type:'Glosario',label:g[0],text:stripHtml(g[0]+' '+g[1]),go:function(){goSection(s,'glos');}});});
   (FLASH[s]||[]).forEach(function(f){idx.push({s:s,type:'Flashcard',label:f[0],text:stripHtml(f[0]+' '+f[1]),go:function(){goSection(s,'flash');}});});
+  ((typeof CHAINS!=='undefined'&&CHAINS[s])||[]).forEach(function(c){
+    idx.push({s:s,type:'Cadena',label:c.title,text:stripHtml(c.title+' '+c.nodes.join(' ')),go:function(){goSection(s,'chain');}});
+  });
+  ((typeof LIBROQ!=='undefined'&&LIBROQ[s])||[]).forEach(function(x){
+    idx.push({s:s,type:'Libro',label:x.q,text:stripHtml(x.q+' '+x.e+' '+x.pag),go:function(){goSection(s,'libro');}});
+  });
   ((typeof PATOL!=='undefined'&&PATOL[s])||[]).forEach(function(g){g.items.forEach(function(it){
     idx.push({s:s,type:'Patología',label:it.n,text:stripHtml(it.n+' '+it.q+' '+it.m),go:function(){goSection(s,'patol');}});
   });});
